@@ -20,6 +20,7 @@ public class Test {
                 @Override
                 public void run() {
                     try {
+                        System.out.println("hello");
                         semaphore.release();
                         semaphore.acquire();
                     } catch (InterruptedException e) {
