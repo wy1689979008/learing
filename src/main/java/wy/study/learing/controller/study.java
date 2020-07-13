@@ -4,7 +4,9 @@ import com.sun.jmx.snmp.tasks.ThreadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import wy.study.learing.bean.A;
 import wy.study.learing.bean.AutoGetField;
 import wy.study.learing.bean.AutoValue;
 import wy.study.learing.service.RedisStudy;
@@ -24,37 +26,45 @@ import static java.lang.Math.E;
 public class study {
     @Autowired
     private RedisStudy redisStudy;
-    public  String a="1";
-    public  int i=0;
-    @AutoGetField(description = "wy",length = 15)
+    public String a = "1";
+    public int i = 0;
+    @AutoGetField(description = "wy", length = 15)
     private String name;
     @AutoValue(value = "${remain.time}")
     private String valu;
 
 
-    static int j=0;
+    static int j = 0;
 
 
     @GetMapping("/study")
     @ResponseBody
-    public int test() {
-        BlockingQueue<Runnable> workQueue=null;
-        ExecutorService threadService=  new ThreadPoolExecutor(5,10,0L,TimeUnit.MILLISECONDS,new LinkedBlockingQueue<Runnable>());
+    public int test(String userName) {
+
+        try {
+            A a = A.class.newInstance();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        BlockingQueue<Runnable> workQueue = null;
+        ExecutorService threadService = new ThreadPoolExecutor(5, 10, 0L, TimeUnit.MILLISECONDS, new LinkedBlockingQueue<Runnable>());
         threadService.execute(new Runnable() {
             @Override
             public void run() {
-                for (int i=0;i<100000;i++){
-                    j++ ;
-                    System.out.println(Thread.currentThread().getName()+"===>"+j);
+                for (int i = 0; i < 100000; i++) {
+                    j++;
+                    System.out.println(Thread.currentThread().getName() + "===>" + j);
                 }
             }
         });
         threadService.execute(new Runnable() {
             @Override
             public void run() {
-                for (int i=0;i<100000;i++){
-                   j++ ;
-                   System.out.println(Thread.currentThread().getName()+"===>"+j);
+                for (int i = 0; i < 100000; i++) {
+                    j++;
+                    System.out.println(Thread.currentThread().getName() + "===>" + j);
                 }
             }
         });

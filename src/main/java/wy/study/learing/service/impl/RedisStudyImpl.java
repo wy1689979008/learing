@@ -11,7 +11,7 @@ import wy.study.learing.service.RedisStudy;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
-public class RedisStudyImpl implements RedisStudy {
+public class RedisStudyImpl implements RedisStudy  {
     @Autowired
     private RedisTemplate redisTemplate;
     public int share = 0;
