@@ -1,24 +1,19 @@
 package wy.study.learing.controller;
 
-import com.sun.jmx.snmp.tasks.ThreadService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.interceptor.TransactionAspectSupport;
-import org.springframework.util.StringUtils;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
+import wy.study.learing.abstract_test.Sun;
 import wy.study.learing.bean.A;
 import wy.study.learing.bean.AutoGetField;
 import wy.study.learing.bean.AutoValue;
+import wy.study.learing.service.AService;
 import wy.study.learing.service.RedisStudy;
 
-import java.lang.reflect.Field;
-import java.util.HashMap;
-import java.util.Vector;
+import javax.annotation.Resource;
+import java.lang.reflect.Type;
 import java.util.concurrent.*;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.concurrent.locks.ReentrantLock;
-
-import static java.lang.Math.E;
 
 
 @RestController
@@ -33,7 +28,15 @@ public class study {
     @AutoValue(value = "${remain.time}")
     private String valu;
 
+    @Autowired
+    private Sun sun;
 
+    @Autowired
+    @Qualifier("aservice")
+    private AService aService;
+
+    @Resource(name = "bservice")
+    private AService bb;
     static int j = 0;
 
 
@@ -77,8 +80,8 @@ public class study {
     @GetMapping("/study1")
     @ResponseBody
     public String test1() {
-        redisStudy.test1();
-        return a;
+        String test = sun.test();
+        return test;
     }
 
 }
