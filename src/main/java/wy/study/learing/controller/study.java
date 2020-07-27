@@ -21,7 +21,7 @@ import java.util.concurrent.*;
 public class study {
     @Autowired
     private RedisStudy redisStudy;
-    public String a = "1";
+    public String b = "1";
     public int i = 0;
     @AutoGetField(description = "wy", length = 15)
     private String name;
