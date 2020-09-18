@@ -1,10 +1,13 @@
 package wy.study.learing;
 
+import com.sun.org.apache.bcel.internal.util.ClassLoader;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
+
+import java.net.URL;
 
 @SpringBootTest
 class LearingApplicationTests {
@@ -15,6 +18,7 @@ class LearingApplicationTests {
    private StringRedisTemplate stringRedisTemplate;
     @Test
     void contextLoads() {
+
         //string结构
         //redisTemplate.opsForValue().set("zhangsan","1");
         //Object zhnagsna = redisTemplate.opsForValue().get("zhnagsna");

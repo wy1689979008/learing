@@ -43,35 +43,35 @@ public class AlternatePrint {
 
 
         //第二种解法，synchronized+notify()+wait()
-        // final Object o = new Object();
-//        new Thread(() -> {
-//            synchronized (o) {
-//                for (char c : a) {
-//                    System.out.println(c);
-//                    try {
-//                        o.notify();
-//                        o.wait();
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//                o.notify();//为什么这里加notify()？因为执行完毕总有一个线程阻塞在那里,那也就无法停止程序
-//            }
-//        }, "t1").start();
-//        new Thread(() -> {
-//            synchronized (o) {
-//                for (char c : b) {
-//                    System.out.println(c);
-//                    try {
-//                        o.notify();
-//                        o.wait();
-//                    } catch (InterruptedException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//                o.notify();
-//            }
-//        }, "t1").start();
+         final Object o = new Object();
+        new Thread(() -> {
+            synchronized (o) {
+                for (char c : a) {
+                    System.out.println(c);
+                    try {
+                        o.notify();
+                        o.wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                o.notify();//为什么这里加notify()？因为执行完毕总有一个线程阻塞在那里,那也就无法停止程序
+            }
+        }, "t1").start();
+        new Thread(() -> {
+            synchronized (o) {
+                for (char c : b) {
+                    System.out.println(c);
+                    try {
+                        o.notify();
+                        o.wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                o.notify();
+            }
+        }, "t1").start();
 
 
         //第三种解法，condition(相当于一个阻塞队列)

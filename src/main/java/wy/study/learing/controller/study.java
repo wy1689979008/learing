@@ -1,18 +1,26 @@
 package wy.study.learing.controller;
 
+import org.springframework.beans.factory.BeanDefinitionStoreException;
+import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.beans.factory.support.AbstractBeanDefinitionReader;
+import org.springframework.beans.factory.support.BeanDefinitionRegistry;
+import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
 import org.springframework.web.bind.annotation.*;
 import wy.study.learing.abstract_test.Sun;
 import wy.study.learing.bean.A;
 import wy.study.learing.bean.AutoGetField;
 import wy.study.learing.bean.AutoValue;
+import wy.study.learing.common.Msg;
 import wy.study.learing.service.AService;
 import wy.study.learing.service.RedisStudy;
 
 import javax.annotation.Resource;
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.concurrent.*;
 
 
@@ -77,11 +85,12 @@ public class study {
 
     }
 
-    @GetMapping("/study1")
-    @ResponseBody
-    public String test1() {
-        String test = sun.test();
-        return test;
+    @RequestMapping("/study1")
+    public HashMap test1() {
+        //AbstractBeanDefinitionReader definitionReader=new XmlBeanDefinitionReader();
+        HashMap map=new HashMap();
+        map.put(null,null);
+        return map;
     }
 
 }
