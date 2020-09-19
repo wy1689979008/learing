@@ -1,4 +1,4 @@
-package wy.study.learing.designPatterns.observePattern;
+package wy.study.learing.designPatterns.observe_pattern;
 
 /**
  * 使用者1

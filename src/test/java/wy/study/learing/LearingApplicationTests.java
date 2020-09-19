@@ -1,24 +1,32 @@
 package wy.study.learing;
 
-import com.sun.org.apache.bcel.internal.util.ClassLoader;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.core.io.DefaultResourceLoader;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 
-import java.net.URL;
+import java.io.File;
 
 @SpringBootTest
-class LearingApplicationTests {
+class LearingApplicationTests<StringRedisTemplate> {
    @Autowired
    private RedisTemplate redisTemplate;
 
    @Autowired
    private StringRedisTemplate stringRedisTemplate;
     @Test
-    void contextLoads() {
-
+    void contextLoads() throws Exception{
+        DefaultResourceLoader defaultResourceLoader = new DefaultResourceLoader();
+        Resource resource = defaultResourceLoader.getResource("application.yml");
+        File file = resource.getFile();
+        String[] list = file.list();
+        for (String l:list){
+            System.out.printf(l);
+        }
         //string结构
         //redisTemplate.opsForValue().set("zhangsan","1");
         //Object zhnagsna = redisTemplate.opsForValue().get("zhnagsna");

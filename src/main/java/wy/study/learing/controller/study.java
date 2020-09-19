@@ -1,26 +1,20 @@
 package wy.study.learing.controller;
 
-import org.springframework.beans.factory.BeanDefinitionStoreException;
-import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.beans.factory.config.BeanDefinition;
-import org.springframework.beans.factory.support.AbstractBeanDefinitionReader;
-import org.springframework.beans.factory.support.BeanDefinitionRegistry;
-import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
+import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.web.bind.annotation.*;
 import wy.study.learing.abstract_test.Sun;
 import wy.study.learing.bean.A;
 import wy.study.learing.bean.AutoGetField;
 import wy.study.learing.bean.AutoValue;
-import wy.study.learing.common.Msg;
 import wy.study.learing.service.AService;
 import wy.study.learing.service.RedisStudy;
 
 import javax.annotation.Resource;
+import java.io.File;
 import java.lang.reflect.Type;
-import java.util.HashMap;
 import java.util.concurrent.*;
 
 
@@ -29,7 +23,7 @@ import java.util.concurrent.*;
 public class study {
     @Autowired
     private RedisStudy redisStudy;
-    public String b = "1";
+    public String a = "1";
     public int i = 0;
     @AutoGetField(description = "wy", length = 15)
     private String name;
@@ -85,12 +79,17 @@ public class study {
 
     }
 
-    @RequestMapping("/study1")
-    public HashMap test1() {
-        //AbstractBeanDefinitionReader definitionReader=new XmlBeanDefinitionReader();
-        HashMap map=new HashMap();
-        map.put(null,null);
-        return map;
+    @GetMapping("/study1")
+    @ResponseBody
+    public void test1() throws Exception{
+        DefaultResourceLoader defaultResourceLoader = new DefaultResourceLoader();
+
+        org.springframework.core.io.Resource resource = defaultResourceLoader.getResource("application.yml");
+        File file = resource.getFile();
+        String[] list = file.list();
+        for (String l:list){
+            System.out.printf(l);
+        }
     }
 
 }

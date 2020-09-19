@@ -1,4 +1,4 @@
-package wy.study.learing.designPatterns.observePattern;
+package wy.study.learing.designPatterns.observe_pattern;
 
 public class ObservePattern_test {
     public static void main(String[] args) {

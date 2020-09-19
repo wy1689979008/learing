@@ -8,4 +8,5 @@ import wy.study.learing.service.impl.BImpl;
 public abstract class Parent {
     @Autowired
     protected BImpl bImpl;
+
 }
