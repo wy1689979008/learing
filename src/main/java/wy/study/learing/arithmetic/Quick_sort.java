@@ -9,78 +9,44 @@ public class Quick_sort {
      * 思想：分治法
      */
     public static void main(String[] args) {
-        int[] arrays = {7, 6, 8, 2, 10, 9};
+        int[] arrays = {5, 6, 8, 2, 10, 9,-2,100,99,200,-3,101,55,500};
         int[] ints = QuickSort(arrays, 0, arrays.length - 1);
         for (int i = 0; i < ints.length; i++) {
             System.out.println(ints[i]);
         }
+
     }
 
     public static int[] QuickSort(int[] arrays, int low, int high) {
-//        int pivot = low;
-//        int value=arrays[low];
-//        while (low < high) {
-//            if (arrays[high] < arrays[pivot] && low < high) {
-//                arrays[low] = arrays[high];
-//                arrays[high] = arrays[pivot];
-//                while (arrays[low] < arrays[pivot] && low < high) {
-//                    low++;
-//                    if (arrays[low] > arrays[pivot]) {
-//                        arrays[high] = arrays[low];
-//                        arrays[low] = arrays[pivot];
-//                    }
-//                }
-//            } else {
-//                high--;
-//            }
-//            if (low == high) {
-//                QuickSort(arrays, low, pivot - 1);
-//                QuickSort(arrays, pivot + 1, high);
-//            }
-//
-//
-//        }
-
-        if (low < high)
-        {
-            //Swap(s[l], s[(l + r) / 2]); //将中间的这个数和第一个数交换 参见注1
-            int i = low, j = high, x = arrays[low];
-            while (i < j)
-            {
-                while(i < j && arrays[j] >= x) // 从右向左找第一个小于x的数
-                    j--;
-                if(i < j)
-                    arrays[i++] = arrays[j];
-
-                while(i < j && arrays[i] < x) // 从左向右找第一个大于等于x的数
-                    i++;
-                if(i < j)
-                    arrays[j--] = arrays[i];
+        int pivot = arrays[low];
+        int left = low;
+        int right = high;
+        while (left < right) {
+            //从右向左开始找<pivot，找不到就right--
+            while (arrays[right] > pivot && left < right) {
+                right--;
             }
-            arrays[i] = x;
-            QuickSort(arrays, low, i - 1); // 递归调用
-            QuickSort(arrays, i + 1, low);
+            if (arrays[right] < pivot && left < right) {
+                //交换位置
+                arrays[left] = arrays[right];
+                arrays[right] = pivot;
+            }
+            //从左向右开始找>pivot，找不到就left++
+            while (arrays[left] < pivot && left < right) {
+                left++;
+            }
+            if (arrays[left] > pivot && left < right) {
+                //交换位置
+                arrays[right] = arrays[left];
+                arrays[left] = pivot;
+            }
+            if (left > low) {
+                QuickSort(arrays, low, left - 1);
+            }
+            if (right < high) {
+                QuickSort(arrays, right + 1, high);
+            }
         }
-        return arrays;
-    }
-
-    public static int[] sort(int[] arrays, int low, int high, int pivot) {
-//        while (low < high) {
-//            if (arrays[high] < pivot && low != high) {
-//                arrays[low] = arrays[high];
-//                low++;
-//            }
-//            if (arrays[low] > pivot && low != high) {
-//                arrays[high] = arrays[low];
-//                high--;
-//            }
-//            if (low==high){
-//                sort(arrays,low,)
-//            }
-//
-//
-//        }
-
         return arrays;
 
     }

@@ -1,30 +1,23 @@
 package wy.study.learing.arithmetic;
 
-public class bubble_sort {
+public class Bubble_sort {
     /**
-     * 冒泡排序
+     * 冒泡排序  从头开始逐个比较，直到最小的浮到最上面
      */
     static Integer[] sort = {3, -1,1, 5, 200, 100, 9, 10, 8};
 
     public static Integer[] bubble(Integer[] arrays) {
-        for (int i = 0; i < arrays.length - 1; i++) {
-            for (int j = i; j < arrays.length - 1; j++) {
-                if (arrays[j] > arrays[j + 1]) {
+        for (int i = 0; i < arrays.length; i++) {
+            for (int j = 0; j < arrays.length-1-i; j++) {
+                if (arrays[j] > arrays[j+1]) {
                     //交换顺序
-                    swap(arrays, j, j + 1);
+                    int middle=arrays[j];
+                    arrays[j]=arrays[j+1];
+                    arrays[j+1]=middle;
                 }
             }
         }
-        return sort;
-    }
-
-    /**
-     * 交换顺序
-     */
-    static void swap(Integer[] arrays, int firstIndex, int endIndex) {
-        int middle = arrays[firstIndex];
-        arrays[firstIndex] = arrays[endIndex];
-        arrays[endIndex] = middle;
+        return arrays;
     }
 
     public static void main(String[] args) {
