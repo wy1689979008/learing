@@ -6,6 +6,7 @@ public class Quick_sort {
      * 步骤：先选取一个基数，默认pivot=arrays[0],然后从high向low遍历，找到第一个小于pivot的值，放入arrays[0],然后从low
      * 向high遍历，找到比pivot大的数放入刚才比pivot大的数的那个位置，直到i==j.....
      * 递归调用
+     * 时间复杂度：nlog(n)
      * 思想：分治法
      */
     public static void main(String[] args) {
