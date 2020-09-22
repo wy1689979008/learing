@@ -13,9 +13,7 @@ public class Shell_sort {
                 int end = d + i;
                 while (end < arrays.length) {
                     if (arrays[start] > arrays[end]) {
-                        int middle = arrays[end];
-                        arrays[end] = arrays[start];
-                        arrays[start] = middle;
+                        Swap.Swap(arrays,start,end);
                     }
                     start++;
                     end++;
@@ -27,7 +25,7 @@ public class Shell_sort {
     }
 
     public static void main(String[] args) {
-        int[] arrays = {5, 6, 8, 2, 10, 9, -2, 100, 99, 200, -3, 101, 55, 500};
+        int[] arrays = {5, 6, 8, 2, 10, 9, -2, 100,9, 99, 200, -3, 101, 55, 500};
         int[] ints = ShellSort(arrays);
         for (int i = 0; i < ints.length; i++) {
             System.out.println(ints[i]);
