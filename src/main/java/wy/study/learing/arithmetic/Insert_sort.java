@@ -25,7 +25,6 @@ public class Insert_sort {
 
     public static void main(String[] args) throws Exception {
         Random random = new Random(100000);
-
         int[] arrays=new int[10000];
         for (int i=0;i<arrays.length;i++){
             int value = random.nextInt();

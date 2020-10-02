@@ -1,5 +1,7 @@
 package wy.study.learing.arithmetic;
 
+import lombok.Data;
+
 public class Bubble_sort {
     /**
      * 冒泡排序  从头开始逐个比较，直到最小的浮到最上面
